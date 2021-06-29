@@ -7,17 +7,12 @@ export default function SSR({ data }) {
 // Called on the server after each request
 export async function getServerSideProps() {
   try {
-    const res = await fetch(
-      `http://worldtimeapi.org/api/timezone/Asia/Kolkata`
-    );
+    const res = await fetch(`https://next-js-isr-demo.vercel.app/api/hello`);
     const data = await res.json();
 
     return {
       props: {
-        data: {
-          ...data,
-          time: new Date(data.datetime).toLocaleTimeString(),
-        },
+        data,
       },
     };
   } catch (error) {

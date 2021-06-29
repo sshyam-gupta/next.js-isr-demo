@@ -6,14 +6,9 @@ export default function CSR() {
 
   useEffect(() => {
     async function getData() {
-      const res = await fetch(
-        `http://worldtimeapi.org/api/timezone/Asia/Kolkata`
-      );
+      const res = await fetch(`https://next-js-isr-demo.vercel.app/api/hello`);
       const data = await res.json();
-      setData({
-        ...data,
-        time: new Date(data.datetime).toLocaleTimeString(),
-      });
+      setData(data);
     }
     getData();
   }, []);
