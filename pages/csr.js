@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { server } from "../src/config";
 import Welcome from "../src/components/Welcome";
 
 export default function CSR() {
@@ -7,7 +6,9 @@ export default function CSR() {
 
   useEffect(() => {
     async function getData() {
-      const res = await fetch(`${server}/api/hello`);
+      const res = await fetch(
+        `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
+      );
       const data = await res.json();
       setData(data);
     }
