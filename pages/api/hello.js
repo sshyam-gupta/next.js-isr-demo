@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 export default (req, res) => {
   const currentDate = new Date();
   const currentOffset = currentDate.getTimezoneOffset();
@@ -10,12 +8,14 @@ export default (req, res) => {
     currentDate.getTime() + (ISTOffset + currentOffset) * 60000
   );
 
+  const time = `${ISTTime.getHours()
+    .toString()
+    .padStart(2, "0")}:${ISTTime.getMinutes()
+    .toString()
+    .padStart(2, "0")}:${ISTTime.getSeconds().toString().padStart(2, "0")}`;
+
   res.status(200).json({
-    time: `${ISTTime.getHours()
-      .toString()
-      .padStart(2, "0")}:${ISTTime.getMinutes()
-      .toString()
-      .padStart(2, "0")}:${ISTTime.getSeconds().toString().padStart(2, "0")}`,
+    time,
     name: "Shyam Gupta",
   });
 };

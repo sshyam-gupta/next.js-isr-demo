@@ -1,5 +1,4 @@
 import Welcome from "../src/components/Welcome";
-import { server } from "../src/config";
 
 export default function SSG({ data }) {
   return <Welcome {...data} />;
@@ -8,7 +7,9 @@ export default function SSG({ data }) {
 // Called at build time
 export async function getStaticProps() {
   try {
-    const res = await fetch(`${server}/api/hello`);
+    const res = await fetch(
+      `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
+    );
     const data = await res.json();
 
     return {
