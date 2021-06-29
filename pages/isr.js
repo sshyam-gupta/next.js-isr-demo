@@ -8,12 +8,17 @@ export default function ISR({ data }) {
 export async function getStaticProps() {
   try {
     const res = await fetch(
-      `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
+      `http://worldtimeapi.org/api/timezone/Asia/Kolkata`
     );
     const data = await res.json();
 
     return {
-      props: { data },
+      props: {
+        data: {
+          ...data,
+          time: new Date(data.datetime).toLocaleTimeString(),
+        },
+      },
       revalidate: 15,
     };
   } catch (error) {

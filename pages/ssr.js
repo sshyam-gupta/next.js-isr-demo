@@ -8,12 +8,17 @@ export default function SSR({ data }) {
 export async function getServerSideProps() {
   try {
     const res = await fetch(
-      `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
+      `http://worldtimeapi.org/api/timezone/Asia/Kolkata`
     );
     const data = await res.json();
 
     return {
-      props: { data },
+      props: {
+        data: {
+          ...data,
+          time: new Date(data.datetime).toLocaleTimeString(),
+        },
+      },
     };
   } catch (error) {
     console.error("Error fetching  data", error);

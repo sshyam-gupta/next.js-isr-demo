@@ -7,10 +7,13 @@ export default function CSR() {
   useEffect(() => {
     async function getData() {
       const res = await fetch(
-        `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
+        `http://worldtimeapi.org/api/timezone/Asia/Kolkata`
       );
       const data = await res.json();
-      setData(data);
+      setData({
+        ...data,
+        time: new Date(data.datetime).toLocaleTimeString(),
+      });
     }
     getData();
   }, []);
