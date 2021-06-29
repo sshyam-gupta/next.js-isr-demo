@@ -13,7 +13,7 @@ export async function getStaticProps() {
 
     return {
       props: { data },
-      revalidate: 30,
+      revalidate: 15,
     };
   } catch (error) {
     console.error("Error fetching data", error);

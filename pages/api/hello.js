@@ -2,14 +2,20 @@
 
 export default (req, res) => {
   const currentDate = new Date();
+  const currentOffset = currentDate.getTimezoneOffset();
+
+  const ISTOffset = 330; // IST offset UTC +5:30
+
+  const ISTTime = new Date(
+    currentTime.getTime() + (ISTOffset + currentOffset) * 60000
+  );
+
   res.status(200).json({
-    time: `${currentDate.getHours().toString().padStart(2, "0")}:${currentDate
-      .getMinutes()
+    time: `${ISTTime.getHours()
       .toString()
-      .padStart(2, "0")}:${currentDate
-      .getSeconds()
+      .padStart(2, "0")}:${ISTTime.getMinutes()
       .toString()
-      .padStart(2, "0")}`,
+      .padStart(2, "0")}:${ISTTime.getSeconds().toString().padStart(2, "0")}`,
     name: "Shyam Gupta",
   });
 };
