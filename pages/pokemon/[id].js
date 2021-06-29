@@ -1,21 +1,7 @@
+import PokemonItem from "../../src/components/PokemonItem";
+
 export default function Pokemon({ data }) {
-  return (
-    <section>
-      <h1>{data.name}</h1>
-      <img
-        alt={data.name}
-        width="250px"
-        src={data.sprites?.other?.["official-artwork"]?.front_default}
-      />
-      <p>
-        {data.types.length
-          ? data.types.map((type) => (
-              <code key={type.type.name}>{type.type.name}</code>
-            ))
-          : null}
-      </p>
-    </section>
-  );
+  return <PokemonItem {...data} />;
 }
 
 export async function getStaticProps({ params }) {
@@ -40,7 +26,7 @@ export async function getStaticPaths() {
 
   // Get the paths we want to pre-render based on posts
   const paths = pokemon.results.map((pokemon, index) => ({
-    params: { id: index.toString() },
+    params: { id: (index + 1).toString() },
   }));
 
   // We'll pre-render only these paths at build time.

@@ -1,21 +1,7 @@
+import PokemonItem from "../../src/components/PokemonItem";
+
 export default function SSRPage({ data }) {
-  return (
-    <section>
-      <h1>{data.name}</h1>
-      <img
-        alt={data.name}
-        width="250px"
-        src={data.sprites?.other?.["official-artwork"]?.front_default}
-      />
-      <p>
-        {data.types.length
-          ? data.types.map((type) => (
-              <code key={type.type.name}>{type.type.name}</code>
-            ))
-          : null}
-      </p>
-    </section>
-  );
+  return <PokemonItem {...data} />;
 }
 
 // Called on the server after each request
