@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
+import { server } from "../src/config";
+import Welcome from "../src/components/Welcome";
 
 export default function CSR() {
   const [data, setData] = useState();
 
   useEffect(() => {
     async function getData() {
-      const res = await fetch(
-        `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
-      );
+      const res = await fetch(`${server}/api/hello`);
       const data = await res.json();
       setData(data);
     }
     getData();
   }, []);
 
-  return (
-    <>
-      <h2>{`Name: ${data?.user_name}`}</h2>
-      <h4>{`Email: ${data?.user_email}`}</h4>
-    </>
-  );
+  return <Welcome {...data} />;
 }

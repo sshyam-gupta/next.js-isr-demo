@@ -1,18 +1,14 @@
+import Welcome from "../src/components/Welcome";
+import { server } from "../src/config";
+
 export default function SSR({ data }) {
-  return (
-    <>
-      <h2>{`Name: ${data.user_name}`}</h2>
-      <h4>{`Email: ${data.user_email}`}</h4>
-    </>
-  );
+  return <Welcome {...data} />;
 }
 
 // Called on the server after each request
 export async function getServerSideProps() {
   try {
-    const res = await fetch(
-      `https://app.fakejson.com/q/xfwFZwdV?token=aaVWtY8bHdT8r6ztYTZXiQ`
-    );
+    const res = await fetch(`${server}/api/hello`);
     const data = await res.json();
 
     return {
